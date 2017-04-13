@@ -1,0 +1,90 @@
+<html>
+	<head>
+		<style>
+			#squareDiv {
+				float:left;
+				width:80vw;
+				perspective:500px;
+				-webkit-perspective:500px;
+			}
+
+			#square {
+				width: 500px;
+				height: 500px;
+				background-color: rgba(255,255,0,0.5);
+				border: 1px solid black;
+				transition-property: all;
+				transition-duration: 2s;
+				transform-style: preserve-3d;
+				-webkit-transition-property: all;
+				-webkit-transition-duration: 0.7s;
+				-webkit-transform-style: preserve-3d;
+				margin:10vh auto;
+			}
+	
+			#inputDiv {
+				z-index: 1000;
+				position:relative;
+				float:right;
+				width:18vw;
+			}
+
+			#inputDiv2{
+				width:120px;
+				margin: 10vh auto;
+			}
+
+			input {
+				width:30px;
+				text-align: center;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div id = "squareDiv">
+			<div id="square"> </div>
+		</div>
+	
+		<div id="inputDiv">
+			<div id="inputDiv2">
+				<form id="matrix">
+					<input type="text" value = "1"><input type="text" value = "0"><input type="text" value = "0"><input type="text" value = "0"><br>
+					<input type="text" value = "0"><input type="text" value = "1"><input type="text" value = "0"><input type="text" value = "0"><br>
+					<input type="text" value = "0"><input type="text" value = "0"><input type="text" value = "1"><input type="text" value = "0"><br>
+					<input type="text" value = "0"><input type="text" value = "0"><input type="text" value = "0"><input type="text" value = "1"><br>
+				</form>
+				<button onClick = "animate()">Clickis</button>
+				<button onClick = "reset()">Reset</button>
+			</div>
+		</div>
+
+
+
+
+		<script>
+	
+			function animate() {
+				var form = document.getElementById("matrix");
+				matrixStr = "matrix3d(" + form[0].value + "," + form[4].value + "," + form[8].value + "," + form[12].value + "," +
+										  form[1].value + "," + form[5].value + "," + form[9].value + "," + form[13].value + "," +
+										  form[2].value + "," + form[6].value + "," + form[10].value + "," + form[14].value + "," +
+										  form[3].value + "," + form[7].value + "," + form[11].value + "," + form[15].value + ")"  
+		
+				document.getElementById("square").style.transform = matrixStr;
+				document.getElementById("square").style.WebkitTransform = matrixStr;
+			}
+		
+			function reset(){
+				/*document.getElementById("matrix").reset();
+				animate();*/
+				matrixStr = "matrix3d(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1)";
+
+				document.getElementById("square").style.transform = matrixStr;
+				document.getElementById("square").style.WebkitTransform = matrixStr;
+			}
+		
+		</script>
+
+	</body>
+</html>
