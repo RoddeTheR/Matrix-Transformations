@@ -19,8 +19,8 @@
 				-webkit-transition-property: all;
 				-webkit-transition-duration: 0.7s;
 				-webkit-transform-style: preserve-3d;
-				margin:10vh auto;
-				visibility: hidden;
+				margin:20vh auto;
+				display: none;
 			}
 
 			#cube {
@@ -86,9 +86,43 @@
 				width:18vw;
 			}
 
-			#inputDiv2{
+			#modeButtons {
+				width: 130px;
+				margin: 10vh auto;
+			}
+
+			#inputDiv .matrix {
 				width:120px;
 				margin: 10vh auto;
+				position: relative;
+			}
+
+			#inputDiv .matrix button {
+				width: 50;
+				margin:0 4px;
+			}
+
+			#matrix2d{
+				width:60px;
+				margin: 0 auto;
+			}
+
+			#matrix3d{
+				width:90px;
+				margin: 0 auto;
+			}
+
+			#matrix4d{
+				width:120px;
+				margin: 0 auto;
+			}
+
+			#matrix2ddiv {
+				display: none;
+			}
+
+			#matrix4ddiv {
+				display: none;
 			}
 
 			input {
@@ -100,6 +134,8 @@
 	</head>
 	<body>
 		<div id = "squareDiv">
+			<div id="square"> </div>
+
 			<div id = "cube">
 				<div id="face1"> </div>
 				<div id="face2"> </div>
@@ -108,19 +144,43 @@
 				<div id="face5"> </div>
 				<div id="face6"> </div>
 			</div>
-			<div id="square"> </div>
 		</div>
 	
 		<div id="inputDiv">
-			<div id="inputDiv2">
-				<form id="matrix">
+			<div id="modeButtons">
+				<button onClick = "mat2d()">2x2</button>
+				<button onClick = "mat3d()">3x3</button>
+				<button onClick = "mat4d()">4x4</button>
+			</div>
+
+			<div id="matrix2ddiv" class="matrix">
+				<form id="matrix2d">
+					<input type="text" value = "1"><input type="text" value = "0"><br>
+					<input type="text" value = "0"><input type="text" value = "1"><br>
+				</form>
+				<button onClick = "mat2dAnimate()">Clickis</button>
+				<button onClick = "mat2dReset()">Reset</button>
+			</div>
+
+			<div id="matrix3ddiv" class="matrix">
+				<form id="matrix3d">
+					<input type="text" value = "1"><input type="text" value = "0"><input type="text" value = "0"><br>
+					<input type="text" value = "0"><input type="text" value = "1"><input type="text" value = "0"><br>
+					<input type="text" value = "0"><input type="text" value = "0"><input type="text" value = "1"><br>
+				</form>
+				<button onClick = "mat3dAnimate()">Clickis</button>
+				<button onClick = "mat4dReset()">Reset</button>
+			</div>
+
+			<div id="matrix4ddiv" class="matrix">
+				<form id="matrix4d">
 					<input type="text" value = "1"><input type="text" value = "0"><input type="text" value = "0"><input type="text" value = "0"><br>
 					<input type="text" value = "0"><input type="text" value = "1"><input type="text" value = "0"><input type="text" value = "0"><br>
 					<input type="text" value = "0"><input type="text" value = "0"><input type="text" value = "1"><input type="text" value = "0"><br>
 					<input type="text" value = "0"><input type="text" value = "0"><input type="text" value = "0"><input type="text" value = "1"><br>
 				</form>
-				<button onClick = "animate()">Clickis</button>
-				<button onClick = "reset()">Reset</button>
+				<button onClick = "mat4dAnimate()">Clickis</button>
+				<button onClick = "mat4dReset()">Reset</button>
 			</div>
 		</div>
 
@@ -128,27 +188,74 @@
 
 
 		<script>
+			function mat2d(){
+				document.getElementById("square").style.display = "block";
+				document.getElementById("cube").style.display = "none";
+				document.getElementById("matrix2ddiv").style.display = "block";
+				document.getElementById("matrix3ddiv").style.display = "none";
+				document.getElementById("matrix4ddiv").style.display = "none";
+			}
+
+			function mat3d(){
+				document.getElementById("square").style.display = "none";
+				document.getElementById("cube").style.display = "block";
+				document.getElementById("matrix2ddiv").style.display = "none";
+				document.getElementById("matrix3ddiv").style.display = "block";
+				document.getElementById("matrix4ddiv").style.display = "none";
+			}
+
+			function mat4d(){
+				document.getElementById("square").style.display = "none";
+				document.getElementById("cube").style.display = "block";
+				document.getElementById("matrix2ddiv").style.display = "none";
+				document.getElementById("matrix3ddiv").style.display = "none";
+				document.getElementById("matrix4ddiv").style.display = "block";
+			}
+
+			function mat2dAnimate(){
+				var form = document.getElementById("matrix2d");
+				matrixStr = "matrix3d(" + form[0].value + "," + form[2].value + ",0,0," + 
+										  form[1].value + "," + form[3].value + ",0,0," +
+										  "0,0,1,0, 0,0,0,1)";
+
+				document.getElementById("square").style.transform = matrixStr;
+				document.getElementById("square").style.WebkitTransform = matrixStr;
+			}
+
+			function mat2dReset(){
+				matrixStr = "matrix3d(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1)";
+
+				document.getElementById("square").style.transform = matrixStr;
+				document.getElementById("square").style.WebkitTransform = matrixStr;
+			}
+
+
+			function mat3dAnimate(){
+				var form = document.getElementById("matrix3d");
+				matrixStr = "matrix3d(" + form[0].value + "," + form[3].value + "," + form[6].value + ",0," +
+										  form[1].value + "," + form[4].value + "," + form[7].value + ",0," +
+										  form[2].value + "," + form[5].value + "," + form[8].value + ",0," +
+										  "0,0,0,1)"  
+
+				document.getElementById("cube").style.transform = matrixStr;
+				document.getElementById("cube").style.WebkitTransform = matrixStr;
+			}
+
 	
-			function animate() {
-				var form = document.getElementById("matrix");
+			function mat4dAnimate() {
+				var form = document.getElementById("matrix4d");
 				matrixStr = "matrix3d(" + form[0].value + "," + form[4].value + "," + form[8].value + "," + form[12].value + "," +
 										  form[1].value + "," + form[5].value + "," + form[9].value + "," + form[13].value + "," +
 										  form[2].value + "," + form[6].value + "," + form[10].value + "," + form[14].value + "," +
 										  form[3].value + "," + form[7].value + "," + form[11].value + "," + form[15].value + ")"  
 		
-				/*document.getElementById("square").style.transform = matrixStr;
-				document.getElementById("square").style.WebkitTransform = matrixStr;*/
 				document.getElementById("cube").style.transform = matrixStr;
 				document.getElementById("cube").style.WebkitTransform = matrixStr;
 			}
 		
-			function reset(){
-				/*document.getElementById("matrix").reset();
-				animate();*/
+			function mat4dReset(){
 				matrixStr = "matrix3d(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1)";
 
-				/*document.getElementById("square").style.transform = matrixStr;
-				document.getElementById("square").style.WebkitTransform = matrixStr;*/
 				document.getElementById("cube").style.transform = matrixStr;
 				document.getElementById("cube").style.WebkitTransform = matrixStr;
 			}
