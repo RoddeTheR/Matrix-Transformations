@@ -11,7 +11,7 @@
 			#square {
 				width: 500px;
 				height: 500px;
-				background-color: rgba(255,255,0,0.5);
+				background-color: rgba(255,255,0,1);
 				border: 1px solid black;
 				transition-property: all;
 				transition-duration: 2s;
@@ -20,6 +20,63 @@
 				-webkit-transition-duration: 0.7s;
 				-webkit-transform-style: preserve-3d;
 				margin:10vh auto;
+				visibility: hidden;
+			}
+
+			#cube {
+				transition-property: all;
+				transition-duration: 2s;
+				transform-style: preserve-3d;
+				-webkit-transition-property: all;
+				-webkit-transition-duration: 0.7s;
+				-webkit-transform-style: preserve-3d;
+				width:300px;
+				margin:20vh auto;
+			}
+
+			#cube div {
+				width: 300px;
+				height: 300px;
+				background-color: rgba(250,40,120,0.5);
+				position:absolute;
+				border:1px solid black;
+			}
+
+			#face1 {	/* Fram */
+				transform:matrix3d(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,150,1); 
+				-ms-transform:matrix3d(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,150,1); 
+			    -webkit-transform:matrix3d(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,150,1); 
+			}
+
+			#face2 {	/* Höger */
+				transform:matrix3d(0,0,-1,0, 0,1,0,0, 1,0,0,-0, 150,0,0,1);
+				-ms-transform:matrix3d(0,0,-1,0, 0,1,0,0, 1,0,0,-0, 150,0,0,1);
+				-webkit-transform:matrix3d(0,0,-1,0, 0,1,0,0, 1,0,0,-0, 150,0,0,1);
+
+			}
+
+			#face3 {	/* Bak */
+				transform:matrix3d(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,-150,1);
+				-ms-transform:matrix3d(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,-150,1);
+				-webkit-transform:matrix3d(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,-150,1);
+			}
+
+			#face4 {	/* Vänster */
+				transform:matrix3d(0,0,1,0, 0,1,0,0, -1,0,0,0, -150,0,0,1);
+				-ms-transform:matrix3d(0,0,1,0, 0,1,0,0, -1,0,0,0, -150,0,0,1);
+				-webkit-transform:matrix3d(0,0,1,0, 0,1,0,0, -1,0,0,0, -150,0,0,1);
+			}
+
+			#face5 {	/* Upp */
+				transform:matrix3d(1,0,0,0, 0,0,-1,0, 0,1,0,0, 0,-150,0,1);
+				-ms-transform:matrix3d(1,0,0,0, 0,0,-1,0, 0,1,0,0, 0,-150,0,1);
+				-webkit-transform:matrix3d(1,0,0,0, 0,0,-1,0, 0,1,0,0, 0,-150,0,1);
+			}
+
+			#face6 {	/* Ner */
+				transform:matrix3d(1,0,0,0, 0,0,1,0, 0,-1,0,0, 0,150,0,1);
+				-ms-transform:matrix3d(1,0,0,0, 0,0,1,0, 0,-1,0,0, 0,150,0,1);
+				-webkit-transform:matrix3d(1,0,0,0, 0,0,1,0, 0,-1,0,0, 0,150,0,1);
 			}
 	
 			#inputDiv {
@@ -43,6 +100,14 @@
 	</head>
 	<body>
 		<div id = "squareDiv">
+			<div id = "cube">
+				<div id="face1"> </div>
+				<div id="face2"> </div>
+				<div id="face3"> </div>
+				<div id="face4"> </div>
+				<div id="face5"> </div>
+				<div id="face6"> </div>
+			</div>
 			<div id="square"> </div>
 		</div>
 	
@@ -71,8 +136,10 @@
 										  form[2].value + "," + form[6].value + "," + form[10].value + "," + form[14].value + "," +
 										  form[3].value + "," + form[7].value + "," + form[11].value + "," + form[15].value + ")"  
 		
-				document.getElementById("square").style.transform = matrixStr;
-				document.getElementById("square").style.WebkitTransform = matrixStr;
+				/*document.getElementById("square").style.transform = matrixStr;
+				document.getElementById("square").style.WebkitTransform = matrixStr;*/
+				document.getElementById("cube").style.transform = matrixStr;
+				document.getElementById("cube").style.WebkitTransform = matrixStr;
 			}
 		
 			function reset(){
@@ -80,8 +147,10 @@
 				animate();*/
 				matrixStr = "matrix3d(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1)";
 
-				document.getElementById("square").style.transform = matrixStr;
-				document.getElementById("square").style.WebkitTransform = matrixStr;
+				/*document.getElementById("square").style.transform = matrixStr;
+				document.getElementById("square").style.WebkitTransform = matrixStr;*/
+				document.getElementById("cube").style.transform = matrixStr;
+				document.getElementById("cube").style.WebkitTransform = matrixStr;
 			}
 		
 		</script>
