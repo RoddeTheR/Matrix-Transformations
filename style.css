@@ -97,8 +97,13 @@
 }
 
 #inputDiv .matrix button {
-	width: 50;
+	width: 50px;
 	margin:0 4px;
+}
+
+#inputDiv .matrix #submitButton {
+	width: 112px;
+	margin:4px;
 }
 
 #matrix2d{

@@ -4,6 +4,8 @@ function mat2d(){
 	document.getElementById("matrix2ddiv").style.display = "block";
 	document.getElementById("matrix3ddiv").style.display = "none";
 	document.getElementById("matrix4ddiv").style.display = "none";
+	mat2dReset();
+	resetForms();
 }
 
 function mat3d(){
@@ -12,6 +14,8 @@ function mat3d(){
 	document.getElementById("matrix2ddiv").style.display = "none";
 	document.getElementById("matrix3ddiv").style.display = "block";
 	document.getElementById("matrix4ddiv").style.display = "none";
+	mat4dReset();
+	resetForms();
 }
 
 function mat4d(){
@@ -20,6 +24,8 @@ function mat4d(){
 	document.getElementById("matrix2ddiv").style.display = "none";
 	document.getElementById("matrix3ddiv").style.display = "none";
 	document.getElementById("matrix4ddiv").style.display = "block";
+	mat4dReset();
+	resetForms();
 }
 
 function mat2dAnimate(){
@@ -69,3 +75,14 @@ function mat4dReset(){
 	document.getElementById("cube").style.transform = matrixStr;
 	document.getElementById("cube").style.WebkitTransform = matrixStr;
 }
+
+function resetForms(){
+	document.getElementById("matrix2d").reset();
+	document.getElementById("matrix3d").reset();
+	document.getElementById("matrix4d").reset();
+}
+
+
+
+
+
