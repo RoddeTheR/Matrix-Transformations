@@ -1,8 +1,11 @@
 #squareDiv {
 	float:left;
 	width:80vw;
+	height:20vh;
 	perspective:500px;
+	perspective-origin:100% 40%;
 	-webkit-perspective:500px;
+	-webkit-perspective-origin:50% 350px;
 }
 
 #square {
@@ -28,7 +31,7 @@
 	-webkit-transition-duration: 0.7s;
 	-webkit-transform-style: preserve-3d;
 	width:300px;
-	margin:20vh auto;
+	margin:200px auto;
 }
 
 #cube div {
